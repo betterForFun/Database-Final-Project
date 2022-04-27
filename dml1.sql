@@ -37,19 +37,19 @@ commit;
 
 --  LTD_INDI_COUPON
 alter table ltd_indi_coupon add constraint end_date check (end_date>=start_date);
-insert into ltd_indi_coupon (indi_coupon_id, indi_discount_rate, start_date, end_date, license_id) values (6264083937,0.8,to_date('01-AUG-20','DD-MON-RR'),to_date('01-SEP-20','DD-MON-RR'), '588203864'); 
-insert into ltd_indi_coupon (indi_coupon_id, indi_discount_rate, start_date, end_date, license_id) values (4200713646,0.9,to_date('01-OCT-20','DD-MON-RR'),to_date('01-DEC-20','DD-MON-RR'), '588203864'); 
-insert into ltd_indi_coupon (indi_coupon_id, indi_discount_rate, start_date, end_date, license_id) values (7193258878,0.9,to_date('20-JAN-20','DD-MON-RR'),to_date('20-FEB-20','DD-MON-RR'), '002951620'); 
-insert into ltd_indi_coupon (indi_coupon_id, indi_discount_rate, start_date, end_date, license_id) values (9735879478,0.7,to_date('20-MAR-20','DD-MON-RR'),to_date('20-APR-20','DD-MON-RR'), '002951620'); 
-insert into ltd_indi_coupon (indi_coupon_id, indi_discount_rate, start_date, end_date, license_id) values (4198309397,0.9,to_date('01-OCT-20','DD-MON-RR'),to_date('01-NOV-20','DD-MON-RR'), '908879746'); 
-insert into ltd_indi_coupon (indi_coupon_id, indi_discount_rate, start_date, end_date, license_id) values (8940854222,0.6,to_date('01-JAN-21','DD-MON-RR'),to_date('01-MAR-21','DD-MON-RR'), '25296257'); 
-insert into ltd_indi_coupon (indi_coupon_id, indi_discount_rate, start_date, end_date, license_id) values (8918830061,0.8,to_date('01-JUN-21','DD-MON-RR'),to_date('01-JUL-21','DD-MON-RR'), 'H588540221069'); 
-insert into ltd_indi_coupon (indi_coupon_id, indi_discount_rate, start_date, end_date, license_id) values (4299540433,0.8,to_date('01-MAY-21','DD-MON-RR'),to_date('01-JUN-21','DD-MON-RR'), 'ND158958'); 
-insert into ltd_indi_coupon (indi_coupon_id, indi_discount_rate, start_date, end_date, license_id) values (4422823870,0.9,to_date('01-APR-21','DD-MON-RR'),to_date('01-MAY-21','DD-MON-RR'), '058600537'); 
-insert into ltd_indi_coupon (indi_coupon_id, indi_discount_rate, start_date, end_date, license_id) values (5294034487,0.75,to_date('01-MAY-21','DD-MON-RR'),to_date('01-AUG-21','DD-MON-RR'), '26806489'); 
-insert into ltd_indi_coupon (indi_coupon_id, indi_discount_rate, start_date, end_date, license_id) values (6428346312,0.85,to_date('20-JAN-21','DD-MON-RR'),to_date('20-MAY-21','DD-MON-RR'), 'FDQWERL25495'); 
-insert into ltd_indi_coupon (indi_coupon_id, indi_discount_rate, start_date, end_date, license_id) values (2108149161,0.9,to_date('01-JAN-22','DD-MON-RR'),to_date('21-JAN-22','DD-MON-RR'), '101016329'); 
-insert into ltd_indi_coupon (indi_coupon_id, indi_discount_rate, start_date, end_date, license_id) values (9927676813,0.6,to_date('01-DEC-21','DD-MON-RR'),to_date('21-DEC-21','DD-MON-RR'), '101016329'); 
+insert into ltd_indi_coupon (indi_coupon_id, indi_discount_rate, start_date, end_date, license_id) values (6264083937,0.8,str_to_date('01-AUG-20','%d-%M-%y'),str_to_date('01-SEP-20','%d-%M-%y'), '588203864'); 
+insert into ltd_indi_coupon (indi_coupon_id, indi_discount_rate, start_date, end_date, license_id) values (4200713646,0.9,str_to_date('01-OCT-20','%d-%M-%y'),str_to_date('01-DEC-20','%d-%M-%y'), '588203864'); 
+insert into ltd_indi_coupon (indi_coupon_id, indi_discount_rate, start_date, end_date, license_id) values (7193258878,0.9,str_to_date('20-JAN-20','%d-%M-%y'),str_to_date('20-FEB-20','%d-%M-%y'), '002951620'); 
+insert into ltd_indi_coupon (indi_coupon_id, indi_discount_rate, start_date, end_date, license_id) values (9735879478,0.7,str_to_date('20-MAR-20','%d-%M-%y'),str_to_date('20-APR-20','%d-%M-%y'), '002951620'); 
+insert into ltd_indi_coupon (indi_coupon_id, indi_discount_rate, start_date, end_date, license_id) values (4198309397,0.9,str_to_date('01-OCT-20','%d-%M-%y'),str_to_date('01-NOV-20','%d-%M-%y'), '908879746'); 
+insert into ltd_indi_coupon (indi_coupon_id, indi_discount_rate, start_date, end_date, license_id) values (8940854222,0.6,str_to_date('01-JAN-21','%d-%M-%y'),str_to_date('01-MAR-21','%d-%M-%y'), '25296257'); 
+insert into ltd_indi_coupon (indi_coupon_id, indi_discount_rate, start_date, end_date, license_id) values (8918830061,0.8,str_to_date('01-JUN-21','%d-%M-%y'),str_to_date('01-JUL-21','%d-%M-%y'), 'H588540221069'); 
+insert into ltd_indi_coupon (indi_coupon_id, indi_discount_rate, start_date, end_date, license_id) values (4299540433,0.8,str_to_date('01-MAY-21','%d-%M-%y'),str_to_date('01-JUN-21','%d-%M-%y'), 'ND158958'); 
+insert into ltd_indi_coupon (indi_coupon_id, indi_discount_rate, start_date, end_date, license_id) values (4422823870,0.9,str_to_date('01-APR-21','%d-%M-%y'),str_to_date('01-MAY-21','%d-%M-%y'), '058600537'); 
+insert into ltd_indi_coupon (indi_coupon_id, indi_discount_rate, start_date, end_date, license_id) values (5294034487,0.75,str_to_date('01-MAY-21','%d-%M-%y'),str_to_date('01-AUG-21','%d-%M-%y'), '26806489'); 
+insert into ltd_indi_coupon (indi_coupon_id, indi_discount_rate, start_date, end_date, license_id) values (6428346312,0.85,str_to_date('20-JAN-21','%d-%M-%y'),str_to_date('20-MAY-21','%d-%M-%y'), 'FDQWERL25495'); 
+insert into ltd_indi_coupon (indi_coupon_id, indi_discount_rate, start_date, end_date, license_id) values (2108149161,0.9,str_to_date('01-JAN-22','%d-%M-%y'),str_to_date('21-JAN-22','%d-%M-%y'), '101016329'); 
+insert into ltd_indi_coupon (indi_coupon_id, indi_discount_rate, start_date, end_date, license_id) values (9927676813,0.6,str_to_date('01-DEC-21','%d-%M-%y'),str_to_date('21-DEC-21','%d-%M-%y'), '101016329'); 
 commit;
 
 
@@ -196,43 +196,43 @@ alter table LTD_rent_record add constraint dropoff_date check (dropoff_date>=pic
 
 insert into LTD_rent_record (record_id, pickup_office_id, dropoff_office_id, pickup_date, dropoff_date, start_meter, end_meter, daliy_meter_limit, email, vin) 
 values 
-(default, 1, 1, to_date('17-JUN-19','DD-MON-RR'), to_date('18-JUN-19','DD-MON-RR'), 12000, 12300, 500, 'yaumewekoha-8071@yahoo.com', '1N4DL01D2XC212827');
+(default, 1, 1, str_to_date('17-JUN-19','%d-%M-%y'), str_to_date('18-JUN-19','%d-%M-%y'), 12000, 12300, 500, 'yaumewekoha-8071@yahoo.com', '1N4DL01D2XC212827');
 
 insert into LTD_rent_record (record_id, pickup_office_id, dropoff_office_id, pickup_date, dropoff_date, start_meter, end_meter, daliy_meter_limit, email, vin) 
 values 
-(default, 1, 1, to_date('20-MAY-20','DD-MON-RR'), to_date('22-MAY-20','DD-MON-RR'), 12000, 12300, 500, 'wajougroulage-5993@yopmail.com', '3VWPP7AJXDM655051');
+(default, 1, 1, str_to_date('20-MAY-20','%d-%M-%y'), str_to_date('22-MAY-20','%d-%M-%y'), 12000, 12300, 500, 'wajougroulage-5993@yopmail.com', '3VWPP7AJXDM655051');
 
 insert into LTD_rent_record (record_id, pickup_office_id, dropoff_office_id, pickup_date, dropoff_date, start_meter, end_meter, daliy_meter_limit, email, vin) 
 values 
-(default, 2, 2, to_date('10-OCT-20','DD-MON-RR'), to_date('11-OCT-20','DD-MON-RR'), 10000, 12300, -1, 'pruppitrubuta-1541@outlook.com', '1FTFW1ET9DFC24713');
+(default, 2, 2, str_to_date('10-OCT-20','%d-%M-%y'), str_to_date('11-OCT-20','%d-%M-%y'), 10000, 12300, -1, 'pruppitrubuta-1541@outlook.com', '1FTFW1ET9DFC24713');
 
 insert into LTD_rent_record (record_id, pickup_office_id, dropoff_office_id, pickup_date, dropoff_date, start_meter, end_meter, daliy_meter_limit, email, vin) 
 values 
-(default, 3, 3, to_date('08-JUN-21','DD-MON-RR'), to_date('09-JUN-21','DD-MON-RR'), 15000, 16089, 500, 'solujicifrou-1777@yopmail.com', '1D7HU18206S690287');
+(default, 3, 3, str_to_date('08-JUN-21','%d-%M-%y'), str_to_date('09-JUN-21','%d-%M-%y'), 15000, 16089, 500, 'solujicifrou-1777@yopmail.com', '1D7HU18206S690287');
 
 insert into LTD_rent_record (record_id, pickup_office_id, dropoff_office_id, pickup_date, dropoff_date, start_meter, end_meter, daliy_meter_limit, email, vin) 
 values 
-(default, 4, 4, to_date('12-JUN-21','DD-MON-RR'), to_date('20-JUN-21','DD-MON-RR'), 10000, 10700, -1, 'trissaddeddoutoi-6616@163.com', '1FTYR11E06PA11413');
+(default, 4, 4, str_to_date('12-JUN-21','%d-%M-%y'), str_to_date('20-JUN-21','%d-%M-%y'), 10000, 10700, -1, 'trissaddeddoutoi-6616@163.com', '1FTYR11E06PA11413');
 
 insert into LTD_rent_record (record_id, pickup_office_id, dropoff_office_id, pickup_date, dropoff_date, start_meter, end_meter, daliy_meter_limit, email, vin) 
 values 
-(default, 5, 5, to_date('20-JUN-21','DD-MON-RR'), to_date('25-JUN-21','DD-MON-RR'), 9000, 10700, -1, 'naffureussofou-8723@nyu.edu', '19UUA5648XA027300');
+(default, 5, 5, str_to_date('20-JUN-21','%d-%M-%y'), str_to_date('25-JUN-21','%d-%M-%y'), 9000, 10700, -1, 'naffureussofou-8723@nyu.edu', '19UUA5648XA027300');
 
 insert into LTD_rent_record (record_id, pickup_office_id, dropoff_office_id, pickup_date, dropoff_date, start_meter, end_meter, daliy_meter_limit, email, vin) 
 values 
-(default, 6, 6, to_date('25-JUN-21','DD-MON-RR'), to_date('27-JUN-21','DD-MON-RR'), 8000, 8500, 1000, 'ceissazassuddeu-8182@nyu.edu', '1J4GS48K86C205394');
+(default, 6, 6, str_to_date('25-JUN-21','%d-%M-%y'), str_to_date('27-JUN-21','%d-%M-%y'), 8000, 8500, 1000, 'ceissazassuddeu-8182@nyu.edu', '1J4GS48K86C205394');
 
 insert into LTD_rent_record (record_id, pickup_office_id, dropoff_office_id, pickup_date, dropoff_date, start_meter, end_meter, daliy_meter_limit, email, vin) 
 values 
-(default, 7, 7, to_date('01-MAY-21','DD-MON-RR'), to_date('05-MAY-21','DD-MON-RR'), 8000, 8500, 1000, 'crossinnaucagre@icloud.com', '3GNAL2EK5DS687791');
+(default, 7, 7, str_to_date('01-MAY-21','%d-%M-%y'), str_to_date('05-MAY-21','%d-%M-%y'), 8000, 8500, 1000, 'crossinnaucagre@icloud.com', '3GNAL2EK5DS687791');
 
 insert into LTD_rent_record (record_id, pickup_office_id, dropoff_office_id, pickup_date, dropoff_date, start_meter, end_meter, daliy_meter_limit, email, vin) 
 values 
-(default, 8, 8, to_date('10-JAN-22','DD-MON-RR'), to_date('11-JAN-22','DD-MON-RR'), 8000, 8500, 1000, 'keigoippeipeitrei@icloud.com', '1FTCR10A0TUA90846');
+(default, 8, 8, str_to_date('10-JAN-22','%d-%M-%y'), str_to_date('11-JAN-22','%d-%M-%y'), 8000, 8500, 1000, 'keigoippeipeitrei@icloud.com', '1FTCR10A0TUA90846');
 
 insert into LTD_rent_record (record_id, pickup_office_id, dropoff_office_id, pickup_date, dropoff_date, start_meter, end_meter, daliy_meter_limit, email, vin) 
 values 
-(default, 9, 9, to_date('20-FEB-22','DD-MON-RR'), to_date('22-FEB-22','DD-MON-RR'), 8000, 8500, 1000, 'hoppadilloummu-2988@gmail.com', 'JTEEP21A460119291');
+(default, 9, 9, str_to_date('20-FEB-22','%d-%M-%y'), str_to_date('22-FEB-22','%d-%M-%y'), 8000, 8500, 1000, 'hoppadilloummu-2988@gmail.com', 'JTEEP21A460119291');
 commit;
 
 
@@ -240,43 +240,43 @@ commit;
 -- LTD_PAYMENT
 insert into LTD_payment (payment_id, payment_date, payment_status, payment_type, card_no, invoice_id) 
 values 
-(1, to_date('18-JUN-19','DD-MON-RR'), 'approved', 'credit card', '4539727885860973', 1);
+(1, str_to_date('18-JUN-19','%d-%M-%y'), 'approved', 'credit card', '4539727885860973', 1);
 
 insert into LTD_payment (payment_id, payment_date, payment_status, payment_type, card_no, invoice_id) 
 values 
-(2, to_date('22-MAY-20','DD-MON-RR'), 'approved', 'debit card', '4929622139534755', 2);
+(2, str_to_date('22-MAY-20','%d-%M-%y'), 'approved', 'debit card', '4929622139534755', 2);
 
 insert into LTD_payment (payment_id, payment_date, payment_status, payment_type, card_no, invoice_id) 
 values 
-(3, to_date('11-OCT-20','DD-MON-RR'), 'approved', 'debit card', '4716035186596478613', 3);
+(3, str_to_date('11-OCT-20','%d-%M-%y'), 'approved', 'debit card', '4716035186596478613', 3);
 
 insert into LTD_payment (payment_id, payment_date, payment_status, payment_type, card_no, invoice_id) 
 values 
-(4, to_date('09-JUN-21','DD-MON-RR'), 'approved', 'credit card', '2221007539255434', 4);
+(4, str_to_date('09-JUN-21','%d-%M-%y'), 'approved', 'credit card', '2221007539255434', 4);
 
 insert into LTD_payment (payment_id, payment_date, payment_status, payment_type, card_no, invoice_id) 
 values 
-(5, to_date('20-JUN-21','DD-MON-RR'), 'approved', 'bebit card', '5221766410559791', 5);
+(5, str_to_date('20-JUN-21','%d-%M-%y'), 'approved', 'bebit card', '5221766410559791', 5);
 
 insert into LTD_payment (payment_id, payment_date, payment_status, payment_type, card_no, invoice_id) 
 values 
-(6, to_date('25-JUN-21','DD-MON-RR'), 'approved', 'credit card', '5512435899910044', 6);
+(6, str_to_date('25-JUN-21','%d-%M-%y'), 'approved', 'credit card', '5512435899910044', 6);
 
 insert into LTD_payment (payment_id, payment_date, payment_status, payment_type, card_no, invoice_id) 
 values 
-(7, to_date('27-JUN-21','DD-MON-RR'), 'approved', 'credit card', '373903761866783', 7);
+(7, str_to_date('27-JUN-21','%d-%M-%y'), 'approved', 'credit card', '373903761866783', 7);
 
 insert into LTD_payment (payment_id, payment_date, payment_status, payment_type, card_no, invoice_id) 
 values 
-(8, to_date('05-MAY-21','DD-MON-RR'), 'approved', 'debit card', '348420970316866', 8);
+(8, str_to_date('05-MAY-21','%d-%M-%y'), 'approved', 'debit card', '348420970316866', 8);
 
 insert into LTD_payment (payment_id, payment_date, payment_status, payment_type, card_no, invoice_id) 
 values 
-(9, to_date('11-JAN-22','DD-MON-RR'), 'approved', 'credit card', '372434040236961', 9);
+(9, str_to_date('11-JAN-22','%d-%M-%y'), 'approved', 'credit card', '372434040236961', 9);
 
 insert into LTD_payment (payment_id, payment_date, payment_status, payment_type, card_no, invoice_id) 
 values 
-(10, to_date('22-FEB-22','DD-MON-RR'), 'approved', 'credit card', '6011961356280666', 10);
+(10, str_to_date('22-FEB-22','%d-%M-%y'), 'approved', 'credit card', '6011961356280666', 10);
 
 
 
