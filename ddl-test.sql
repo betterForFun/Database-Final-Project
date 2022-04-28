@@ -214,7 +214,7 @@ DELIMITER $$
     BEGIN
     SET @d = (SELECT ltd_customer.customer_type FROM ltd_customer WHERE ltd_customer.email = new.email);
         IF  (@d IS NULL OR @d <> 'c') THEN
-            signal sqlstate '72000' set message_text = 'FK corp_cus_customer_FK in Table LTD_corp_cus violates Arc constraint on Table LTD_customer - discriminator column customer_type doesn''t have value ''c''';
+            signal sqlstate '72000' set message_text = 'FK corp_cus_customer_FK in Table ltd_corp_cus violates Arc constraint on Table ltd_customer - discriminator column customer_type doesn''t have value ''c''';
         END IF;
         
  END$$ 
@@ -227,7 +227,7 @@ DELIMITER $$
     BEGIN
     SET @d = (SELECT ltd_customer.customer_type FROM ltd_customer WHERE ltd_customer.email = new.email);
         IF  (@d IS NULL OR @d <> 'i') THEN
-            signal sqlstate '72000' set message_text = 'FK corp_cus_customer_FK in Table LTD_corp_cus violates Arc constraint on Table LTD_customer - discriminator column customer_type doesn''t have value ''i''';
+            signal sqlstate '72000' set message_text = 'FK corp_cus_customer_FK in Table ltd_corp_cus violates Arc constraint on Table ltd_customer - discriminator column customer_type doesn''t have value ''i''';
         END IF;
         
  END$$ 
@@ -237,7 +237,7 @@ DELIMITER ;
 -- trigger to create invoice
 delimiter |;
 CREATE TRIGGER invoice_trigger
-AFTER INSERT ON LTD_rent_record 
+AFTER INSERT ON ltd_rent_record 
 FOR EACH ROW
 BEGIN 
  DECLARE extramile INT;
@@ -251,44 +251,44 @@ BEGIN
  SET days = DATEDIFF(NEW.dropoff_date, NEW.pickup_date);
 
  SET IndiOrCorp = 
-    (SELECT LTD_CUSTOMER.CUSTOMER_TYPE
- FROM LTD_CUSTOMER
- WHERE LTD_CUSTOMER.EMAIL = NEW.EMAIL);
+    (SELECT ltd_CUSTOMER.CUSTOMER_TYPE
+ FROM ltd_CUSTOMER
+ WHERE ltd_CUSTOMER.EMAIL = NEW.EMAIL);
     
  IF IndiOrCorp = 'i' THEN
   SET discount = 
-     (SELECT MIN(LTD_INDI_COUPON.INDI_DISCOUNT_RATE)
-     FROM LTD_INDI_CUS
-     INNER JOIN LTD_INDI_COUPON
-     ON LTD_INDI_COUPON.LICENSE_ID = LTD_INDI_CUS.LICENSE_ID and NEW.EMAIL = LTD_INDI_CUS.EMAIL);
+     (SELECT MIN(ltd_INDI_COUPON.INDI_DISCOUNT_RATE)
+     FROM ltd_INDI_CUS
+     INNER JOIN ltd_INDI_COUPON
+     ON ltd_INDI_COUPON.LICENSE_ID = ltd_INDI_CUS.LICENSE_ID and NEW.EMAIL = ltd_INDI_CUS.EMAIL);
  ELSE
   SET discount = 
-  (SELECT MIN(LTD_CORP_COUPON.C_DISCOUNT_RATE)
-  FROM LTD_CORP_COUPON
-  INNER JOIN LTD_CORP_CUS
-  ON LTD_CORP_CUS.CORP_COUPON_ID = LTD_CORP_COUPON.CORP_COUPON_ID and NEW.EMAIL = LTD_CORP_CUS.EMAIL);
+  (SELECT MIN(ltd_CORP_COUPON.C_DISCOUNT_RATE)
+  FROM ltd_CORP_COUPON
+  INNER JOIN ltd_CORP_CUS
+  ON ltd_CORP_CUS.CORP_COUPON_ID = ltd_CORP_COUPON.CORP_COUPON_ID and NEW.EMAIL = ltd_CORP_CUS.EMAIL);
  END IF;
     
     SET amount = 
- (SELECT SUM(LTD_vehicle_class.rental_rate * days * discount)
- FROM LTD_vehicle_class
- INNER JOIN LTD_vehicle
- ON LTD_vehicle.class_name = LTD_vehicle_class.class_name
- WHERE NEW.vin = LTD_vehicle.vin);
+ (SELECT SUM(ltd_vehicle_class.rental_rate * days * discount)
+ FROM ltd_vehicle_class
+ INNER JOIN ltd_vehicle
+ ON ltd_vehicle.class_name = ltd_vehicle_class.class_name
+ WHERE NEW.vin = ltd_vehicle.vin);
  
 
  SET overamount = 
- (SELECT SUM((LTD_vehicle_class.rental_rate * days + (-1 * extramile * LTD_vehicle_class.over_millage_fee)) * discount)
- FROM LTD_vehicle_class
- INNER JOIN LTD_vehicle
- ON LTD_vehicle.class_name = LTD_vehicle_class.class_name
- WHERE NEW.vin = LTD_vehicle.vin);
+ (SELECT SUM((ltd_vehicle_class.rental_rate * days + (-1 * extramile * ltd_vehicle_class.over_millage_fee)) * discount)
+ FROM ltd_vehicle_class
+ INNER JOIN ltd_vehicle
+ ON ltd_vehicle.class_name = ltd_vehicle_class.class_name
+ WHERE NEW.vin = ltd_vehicle.vin);
 
 
  IF NEW.daliy_meter_limit = -1 or extramile > 0 THEN
-     INSERT INTO LTD_invoice VALUES(default, NEW.dropoff_date, amount, NEW.record_id);
+     INSERT INTO ltd_invoice VALUES(default, NEW.dropoff_date, amount, NEW.record_id);
     ELSEIF extramile < 0 THEN
-        INSERT INTO LTD_invoice VALUES(default, NEW.dropoff_date, overamount, NEW.record_id);
+        INSERT INTO ltd_invoice VALUES(default, NEW.dropoff_date, overamount, NEW.record_id);
  END IF;
 
 END;
