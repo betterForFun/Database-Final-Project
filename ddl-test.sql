@@ -247,26 +247,26 @@ BEGIN
     DECLARE amount INT;
     DECLARE overamount INT;
     
-    SET extramile = NEW.daliy_meter_limit - (NEW.end_meter - NEW.start_meter);
- SET days = DATEDIFF(NEW.dropoff_date, NEW.pickup_date);
+    SET extramile = new.daliy_meter_limit - (new.end_meter - new.start_meter);
+ SET days = DATEDIFF(new.dropoff_date, new.pickup_date);
 
  SET IndiOrCorp = 
-    (SELECT ltd_CUSTOMER.CUSTOMER_TYPE
- FROM ltd_CUSTOMER
- WHERE ltd_CUSTOMER.EMAIL = NEW.EMAIL);
+    (SELECT ltd_customer.customer_type
+ FROM ltd_customer
+ WHERE ltd_customer.email = new.email);
     
  IF IndiOrCorp = 'i' THEN
   SET discount = 
-     (SELECT MIN(ltd_INDI_COUPON.INDI_DISCOUNT_RATE)
-     FROM ltd_INDI_CUS
-     INNER JOIN ltd_INDI_COUPON
-     ON ltd_INDI_COUPON.LICENSE_ID = ltd_INDI_CUS.LICENSE_ID and NEW.EMAIL = ltd_INDI_CUS.EMAIL);
+     (SELECT MIN(ltd_indi_coupon.indi_discount_rate)
+     FROM ltd_indi_cus
+     INNER JOIN ltd_indi_coupon
+     ON ltd_indi_coupon.license_id = ltd_indi_cus.license_id and new.email = ltd_indi_cus.email);
  ELSE
   SET discount = 
-  (SELECT MIN(ltd_CORP_COUPON.C_DISCOUNT_RATE)
-  FROM ltd_CORP_COUPON
-  INNER JOIN ltd_CORP_CUS
-  ON ltd_CORP_CUS.CORP_COUPON_ID = ltd_CORP_COUPON.CORP_COUPON_ID and NEW.EMAIL = ltd_CORP_CUS.EMAIL);
+  (SELECT MIN(ltd_corp_coupon.c_discount_rate)
+  FROM ltd_corp_coupon
+  INNER JOIN ltd_corp_cus
+  ON ltd_corp_cus.corp_coupon_id = ltd_corp_coupon.corp_coupon_id and new.email = ltd_corp_cus.email);
  END IF;
     
     SET amount = 
@@ -274,7 +274,7 @@ BEGIN
  FROM ltd_vehicle_class
  INNER JOIN ltd_vehicle
  ON ltd_vehicle.class_name = ltd_vehicle_class.class_name
- WHERE NEW.vin = ltd_vehicle.vin);
+ WHERE new.vin = ltd_vehicle.vin);
  
 
  SET overamount = 
@@ -282,13 +282,13 @@ BEGIN
  FROM ltd_vehicle_class
  INNER JOIN ltd_vehicle
  ON ltd_vehicle.class_name = ltd_vehicle_class.class_name
- WHERE NEW.vin = ltd_vehicle.vin);
+ WHERE new.vin = ltd_vehicle.vin);
 
 
- IF NEW.daliy_meter_limit = -1 or extramile > 0 THEN
-     INSERT INTO ltd_invoice VALUES(default, NEW.dropoff_date, amount, NEW.record_id);
+ IF new.daliy_meter_limit = -1 or extramile > 0 THEN
+     INSERT INTO ltd_invoice VALUES(default, new.dropoff_date, amount, new.record_id);
     ELSEIF extramile < 0 THEN
-        INSERT INTO ltd_invoice VALUES(default, NEW.dropoff_date, overamount, NEW.record_id);
+        INSERT INTO ltd_invoice VALUES(default, new.dropoff_date, overamount, new.record_id);
  END IF;
 
 END;
