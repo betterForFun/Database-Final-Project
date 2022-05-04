@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+<title>Payment Show</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />    
+<link href='https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css' rel='stylesheet' type='text/css'>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+</head>
+<body >
+
+    
+    <div id="paypal-button"></div>
+
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+    
+    <script>
+        var CREATE_PAYMENT_URL  = 'http://127.0.0.1:5000/payment';
+        var EXECUTE_PAYMENT_URL = 'http://127.0.0.1:5000/execute';
+    
+        paypal.Button.render({
+    
+            env: 'sandbox', // Or 'sandbox'
+    
+            commit: true, // Show a 'Pay Now' button
+    
+            payment: function() {
+                return paypal.request.post(CREATE_PAYMENT_URL).then(function(data) {
+                    return data.paymentID;
+                });
+            },
+    
+            onAuthorize: function(data) {
+                return paypal.request.post(EXECUTE_PAYMENT_URL, {
+                    paymentID: data.paymentID,
+                    payerID:   data.payerID
+                }).then(function(res) {
+    
+                    console.log(res.success)
+                    // The payment is complete!
+                    // You can now show a confirmation message to the customer
+                });
+            }
+    
+        }, '#paypal-button');
+    </script>
+
+<div class="container" >
+    <div class="row" style="padding:50px;">
+        <p><h1>Payment Show</h1></p>
+        <div >
+            <table id='invoiceTable' class='display dataTable' width='100%'>
+                <thead>
+                <tr>
+                    <th>payment_id</th>
+                    <th>payment_status</th>
+                    <th>payment_type</th>
+                    <th>record_id</th>
+
+
+                </tr>
+                </thead>
+                 
+            </table>
+        </div>
+   </div>
+</div>
+<script>
+$(document).ready(function() {
+ 
+  
+    var invoiceDataTable = $('#invoiceTable').DataTable({
+                dom: 'Bfrtip',
+                'processing': true,
+                'serverSide': true,
+                'serverMethod': 'post',
+                'ajax': {
+                    'url':'/paymentShow'
+                },
+                'lengthMenu': [[10, 25, 50, 100], [10, 25, 50, 100]],
+                searching: true,
+                sort: true,
+                "serverSide": true,
+                'columns': [
+                { name: 'payment_id', data: 'payment_id', "orderable": true },
+                { name: 'payment_status', data: 'payment_status', "orderable": true },
+                { name: 'payment_type', data: 'payment_type', "orderable": true },
+                { name: 'card_no', data: 'card_no', "orderable": true },
+
+                ]
+            });
+ 
+});
+ 
+</script>
+
+</body>
+</html>
