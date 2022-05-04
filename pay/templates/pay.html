@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <title>Pay Information</title>
+    </head>
+    <body>
+        <div class="container-sm">
+            <div class="card-body">
+                <form action="/comment" method="POST">
+                    <h2 class="card-title">Please type in your Bank Account Information</h2>
+                    <br/>
+                    <div class="form-group">
+                        <label for="Account_nickname">Account nickname</label>
+                        <input type= "text" name="number" required class="form-control" style="width:200px;" >
+                    </div>
+                    <br/>
+
+                    <div class="form-group">
+                        <label for="Rounting_number">Rounting number</label>
+                        <input type= "text" name="number" required class="form-control" style="width:200px;">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm_rounting_number">Confirm rounting number</label>
+                        <input type= "text" name="number" required class="form-control" style="width:200px;">
+                    </div>
+                    <br/>
+
+                    <div class="form-group">
+                        <label for="Account_number">Account number</label>
+                        <input type="Password" name="comment" required class="form-control" style="width:200px;">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="Confirm_account_number">Confirm account number</label>
+                        <input type="Password" name="comment" required class="form-control" style="width:200px;">
+                    </div>
+                    
+                        <!-- Button trigger modal -->
+                   <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Pay
+            </button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Confirm Paying!
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-danger" >Confirm</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="javascrtpt:window.location.href='http://127.0.0.1:5000/paymentShows'">
+                PaymentShows
+            </button>    
+                        
+
+                </form>
+                
+
+            </div>
+        </div>
+        <div id="paypal-button"></div>
+
+        <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+        
+        <script>
+            var CREATE_PAYMENT_URL  = 'http://127.0.0.1:5000/pay/payment';
+            var EXECUTE_PAYMENT_URL = 'http://127.0.0.1:5000/pay/execute';
+        
+            paypal.Button.render({
+        
+                env: 'sandbox', // Or 'sandbox'
+        
+                commit: true, // Show a 'Pay Now' button
+        
+                payment: function() {
+                    return paypal.request.post(CREATE_PAYMENT_URL).then(function(data) {
+                        return data.paymentID;
+                    });
+                },
+        
+                onAuthorize: function(data) {
+                    return paypal.request.post(EXECUTE_PAYMENT_URL, {
+                        paymentID: data.paymentID,
+                        payerID:   data.payerID
+                    }).then(function(res) {
+        
+                        console.log(res.success)
+                        // The payment is complete!
+                        // You can now show a confirmation message to the customer
+                    });
+                }
+        
+            }, '#paypal-button');
+        </script>
+        </script>
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous">
+        </script>
+    </body>
+
+</html>
