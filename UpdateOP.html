@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Title</title>
+</head>
+<body style="background : url(https://media.driveboo.com/assets-image/768x420/8ea815fb-a62a-499e-ba0b-7d46dfc1e57d.jpg);background-size : cover;">
+
+<center>
+    <div class="text-white bg-primary">
+        <h2 class="text-black ">customer Update Page</h2>
+
+        <span class="black ">Please select the type of the customer</span>
+    </div>
+    <br>
+    <br>
+    <div>
+        <select id="menu" >
+            <option value="/UpdateIndi">individual</option>
+            <option value="/UpdateCorp">corperation</option>
+        </select>
+        <br><br><br>
+        <button id="go" class="btn btn-primary" onclick="fun()">GO!</button>
+        <a class="btn btn-success" href="/employeeOP" role="button">Go Back</a>
+    </div>
+</center>
+
+
+
+<script type="text/javascript">
+
+    function fun() {
+
+        window.location = document.getElementById("menu").value; // JQuery:  $("#menu").val();
+    }
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
