@@ -156,6 +156,7 @@ def paymentShow():
                 
                 data.append({
                     'payment_id': row['payment_id'],
+                    'payment_date': row['payment_date'],
                     'payment_status': row['payment_status'],
                     'payment_type': row['payment_type'],
                     'card_no': row['card_no'],
